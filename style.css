@@ -635,6 +635,10 @@ td.col-check {
   animation: fadeIn 160ms ease;
 }
 
+.modal-overlay[hidden] {
+  display: none !important;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
