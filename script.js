@@ -274,16 +274,16 @@
 
     // Colonna fattura
     const tdFattura = document.createElement("td");
-    tdFattura.dataset.label = "Fattura";
+    tdFattura.dataset.label = "Multa";
     tdFattura.className = "mono-value";
     tdFattura.textContent = formatRange(crime.fatturaMin, crime.fatturaMax, formatCurrency);
     tr.appendChild(tdFattura);
 
     // Colonna mesi
     const tdMesi = document.createElement("td");
-    tdMesi.dataset.label = "Mesi di Carcere";
+    tdMesi.dataset.label = "Ore Arresto";
     tdMesi.className = "mono-value";
-    tdMesi.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "mesi");
+    tdMesi.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
     tr.appendChild(tdMesi);
 
     // Colonna procedura
@@ -372,8 +372,8 @@
     const totals = calculateTotals();
     setSummaryValue(els.valFatturaMin, totals.fatturaMin, formatCurrency);
     setSummaryValue(els.valFatturaMax, totals.fatturaMax, formatCurrency);
-    setSummaryValue(els.valMesiMin, totals.mesiMin, function (n) { return n + " mesi"; });
-    setSummaryValue(els.valMesiMax, totals.mesiMax, function (n) { return n + " mesi"; });
+    setSummaryValue(els.valMesiMin, totals.mesiMin, function (n) { return n + " ore"; });
+    setSummaryValue(els.valMesiMax, totals.mesiMax, function (n) { return n + " ore"; });
   }
 
   function setSummaryValue(el, value, formatter) {
@@ -500,7 +500,7 @@
     els.modalArticolo.textContent = crime.articolo || "—";
     els.modalDescrizione.textContent = crime.descrizione || "—";
     els.modalFattura.textContent = formatRange(crime.fatturaMin, crime.fatturaMax, formatCurrency);
-    els.modalCarcere.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "mesi");
+    els.modalCarcere.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
     els.modalProcedura.textContent = crime.procedura || "—";
     els.modalCategoria.textContent = crime.categoria || "—";
 
