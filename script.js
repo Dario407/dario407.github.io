@@ -25,8 +25,8 @@
     errorState: document.getElementById("error-state"),
     emptyState: document.getElementById("empty-state"),
     retryBtn: document.getElementById("retry-btn"),
-    table: document.getElementById("crimes-table"),
-    tbody: document.getElementById("crimes-tbody"),
+    table: document.getElementById("crimes-list"),
+    list: document.getElementById("crimes-list"),
     searchInput: document.getElementById("search-input"),
     categoriaSelect: document.getElementById("categoria-select"),
     sortSelect: document.getElementById("sort-select"),
@@ -55,7 +55,6 @@
     modalDescrizione: document.getElementById("modal-descrizione"),
     modalFattura: document.getElementById("modal-fattura"),
     modalCarcere: document.getElementById("modal-carcere"),
-    modalProcedura: document.getElementById("modal-procedura"),
     modalCategoria: document.getElementById("modal-categoria"),
     // Toast
     toast: document.getElementById("toast"),
@@ -105,7 +104,6 @@
       fatturaMax: safeNumberOrNull(raw.fatturaMax),
       mesiMin: safeNumberOrNull(raw.mesiMin),
       mesiMax: safeNumberOrNull(raw.mesiMax),
-      procedura: safeString(raw.procedura),
       tipo: raw.tipo === "processo" ? "processo" : "ordinario",
       selezionabile: raw.selezionabile !== false && raw.tipo !== "processo",
       categoria: safeString(raw.categoria) || "Altro",
@@ -123,7 +121,7 @@
   function showState(state) {
     els.loadingState.hidden = state !== "loading";
     els.errorState.hidden = state !== "error";
-    els.table.hidden = state === "loading" || state === "error";
+    els.list.hidden = state === "loading" || state === "error";
   }
 
   function populateCategorie(crimes) {
@@ -205,94 +203,119 @@
     const filtered = filterCrimes();
     const sorted = sortCrimes(filtered);
 
-    els.tbody.innerHTML = "";
+    els.list.innerHTML = "";
 
     if (sorted.length === 0) {
       els.emptyState.hidden = false;
-      els.table.hidden = true;
+      els.list.hidden = true;
     } else {
       els.emptyState.hidden = true;
-      els.table.hidden = false;
+      els.list.hidden = false;
       sorted.forEach(function (crime) {
-        els.tbody.appendChild(buildRow(crime));
+        els.list.appendChild(buildCard(crime));
       });
     }
 
     updateStats();
   }
 
-  function buildRow(crime) {
-    const tr = document.createElement("tr");
-    tr.dataset.id = crime.id;
+  function buildCard(crime) {
+    const li = document.createElement("li");
+    li.className = "crime-card";
+    li.dataset.id = crime.id;
 
     if (crime.tipo === "processo") {
-      tr.classList.add("is-processo");
+      li.classList.add("is-processo");
     } else if (selectedIds.has(crime.id)) {
-      tr.classList.add("is-selected");
+      li.classList.add("is-selected");
     }
 
-    // Colonna selezione
-    const tdCheck = document.createElement("td");
-    tdCheck.className = "col-check";
-    tdCheck.dataset.label = "Seleziona";
+    // Riga superiore: casella di selezione + articolo + nome + categoria
+    const top = document.createElement("div");
+    top.className = "crime-card-top";
+
     if (crime.selezionabile) {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.className = "row-checkbox";
+      checkbox.id = "check-" + crime.id;
       checkbox.checked = selectedIds.has(crime.id);
       checkbox.setAttribute("aria-label", "Seleziona " + crime.nome);
       checkbox.addEventListener("change", function () {
         toggleCrime(crime.id, checkbox.checked);
       });
-      tdCheck.appendChild(checkbox);
+      top.appendChild(checkbox);
     } else {
       const badge = document.createElement("span");
       badge.className = "processo-badge";
       badge.textContent = "PROCESSO";
-      tdCheck.appendChild(badge);
+      top.appendChild(badge);
     }
-    tr.appendChild(tdCheck);
 
-    // Colonna articolo
-    const tdArt = document.createElement("td");
-    tdArt.dataset.label = "Art.";
-    tdArt.textContent = crime.articolo || "—";
-    tr.appendChild(tdArt);
+    const titleWrap = document.createElement("div");
+    titleWrap.className = "crime-card-title";
 
-    // Colonna nome (cliccabile)
-    const tdNome = document.createElement("td");
-    tdNome.dataset.label = "Nome Reato";
+    const artSpan = document.createElement("span");
+    artSpan.className = "crime-art-badge";
+    artSpan.textContent = crime.articolo || "—";
+    titleWrap.appendChild(artSpan);
+
     const nomeBtn = document.createElement("button");
     nomeBtn.type = "button";
     nomeBtn.className = "crime-name-btn";
     nomeBtn.textContent = crime.nome || "—";
+    nomeBtn.setAttribute("aria-label", "Leggi tutti i dettagli di " + (crime.nome || "questo reato"));
     nomeBtn.addEventListener("click", function () {
       openCrimeModal(crime.id);
     });
-    tdNome.appendChild(nomeBtn);
-    tr.appendChild(tdNome);
+    titleWrap.appendChild(nomeBtn);
 
-    // Colonna fattura
-    const tdFattura = document.createElement("td");
-    tdFattura.dataset.label = "Multa";
-    tdFattura.className = "mono-value";
-    tdFattura.textContent = formatRange(crime.fatturaMin, crime.fatturaMax, formatCurrency);
-    tr.appendChild(tdFattura);
+    top.appendChild(titleWrap);
 
-    // Colonna mesi
-    const tdMesi = document.createElement("td");
-    tdMesi.dataset.label = "Ore Arresto";
-    tdMesi.className = "mono-value";
-    tdMesi.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
-    tr.appendChild(tdMesi);
+    if (crime.categoria) {
+      const catTag = document.createElement("span");
+      catTag.className = "crime-category-tag";
+      catTag.textContent = crime.categoria;
+      top.appendChild(catTag);
+    }
 
-    // Colonna procedura
-    const tdProc = document.createElement("td");
-    tdProc.dataset.label = "Procedura";
-    tdProc.textContent = crime.procedura || "—";
-    tr.appendChild(tdProc);
+    li.appendChild(top);
 
-    return tr;
+    // Descrizione del reato, sempre visibile
+    if (crime.descrizione) {
+      const desc = document.createElement("p");
+      desc.className = "crime-desc";
+      desc.textContent = crime.descrizione;
+      li.appendChild(desc);
+    }
+
+    // Badge con multa e ore di arresto
+    const badgesRow = document.createElement("div");
+    badgesRow.className = "crime-badges";
+
+    const fatturaText = formatRange(crime.fatturaMin, crime.fatturaMax, formatCurrency);
+    if (fatturaText !== "—") {
+      const badgeFattura = document.createElement("span");
+      badgeFattura.className = "crime-badge badge-multa";
+      badgeFattura.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>';
+      badgeFattura.appendChild(document.createTextNode("Multa: " + fatturaText));
+      badgesRow.appendChild(badgeFattura);
+    }
+
+    const mesiText = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
+    if (mesiText !== "—") {
+      const badgeMesi = document.createElement("span");
+      badgeMesi.className = "crime-badge badge-ore";
+      badgeMesi.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      badgeMesi.appendChild(document.createTextNode("Arresto: " + mesiText));
+      badgesRow.appendChild(badgeMesi);
+    }
+
+    if (badgesRow.childElementCount > 0) {
+      li.appendChild(badgesRow);
+    }
+
+    return li;
   }
 
   function formatRange(min, max, formatter, suffix) {
@@ -450,7 +473,7 @@
       .filter(Boolean)
       .sort(function (a, b) { return a.articolo.localeCompare(b.articolo, "it", { numeric: true }); });
 
-    const text = selectedCrimes.map(function (c) { return c.articolo; }).join(", ") + " CP";
+    const text = selectedCrimes.map(function (c) { return c.articolo; }).join(", ");
 
     copyTextToClipboard(text)
       .then(function () {
@@ -501,7 +524,6 @@
     els.modalDescrizione.textContent = crime.descrizione || "—";
     els.modalFattura.textContent = formatRange(crime.fatturaMin, crime.fatturaMax, formatCurrency);
     els.modalCarcere.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
-    els.modalProcedura.textContent = crime.procedura || "—";
     els.modalCategoria.textContent = crime.categoria || "—";
 
     lastFocusedElement = document.activeElement;

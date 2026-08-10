@@ -336,6 +336,9 @@ main {
   padding: 10px 16px;
   font-weight: 700;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transition: background var(--transizione), transform var(--transizione), box-shadow var(--transizione);
 }
 
@@ -441,76 +444,204 @@ main {
   margin-top: 12px;
 }
 
-/* ============ TABLE ============ */
+/* ============ GUIDA RAPIDA ============ */
+
+.help-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #FFF8E1;
+  border: 1px solid #F1DFA0;
+  border-left: 4px solid var(--oro);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  color: var(--testo-scuro);
+}
+
+.help-callout .icon {
+  color: #B8860B;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.help-callout p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* ============ ICONE ============ */
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.btn .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.search-field {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--grigio-testo);
+  pointer-events: none;
+}
+
+.search-field input {
+  padding-left: 38px;
+}
+
+/* ============ ELENCO REATI (CARD) ============ */
 
 .table-section {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.crimes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.crime-card {
   background: var(--bianco);
   border: 1px solid var(--grigio-medio);
   border-radius: var(--radius-lg);
+  padding: 16px 18px;
   box-shadow: var(--ombra-leggera);
-  overflow: hidden;
+  transition: box-shadow var(--transizione), transform var(--transizione), background var(--transizione);
 }
 
-.table-wrapper {
-  overflow-x: auto;
+.crime-card:hover {
+  box-shadow: var(--ombra-media);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 640px;
-}
-
-thead th {
-  background: var(--blu-header);
-  color: var(--bianco);
-  text-align: left;
-  padding: 12px 14px;
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  position: sticky;
-  top: 0;
-}
-
-tbody tr {
-  border-bottom: 1px solid var(--grigio-medio);
-  transition: background var(--transizione);
-}
-
-tbody tr:hover {
-  background: var(--grigio-chiaro);
-}
-
-tbody tr.is-selected {
+.crime-card.is-selected {
   background: #EAF1FB;
+  border-color: var(--blu);
 }
 
-tbody tr.is-processo {
+.crime-card.is-processo {
   background: #FBF7EC;
+  border-color: var(--oro);
 }
 
-tbody td {
-  padding: 12px 14px;
-  font-size: 0.9rem;
-  vertical-align: middle;
+.crime-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.col-check {
-  width: 90px;
-  text-align: center;
-}
-
-td.col-check {
-  text-align: center;
-}
-
-.row-checkbox {
-  width: 19px;
-  height: 19px;
+.crime-card .row-checkbox {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
   cursor: pointer;
   accent-color: var(--blu);
+}
+
+.crime-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.crime-art-badge {
+  flex-shrink: 0;
+  background: var(--grigio-chiaro);
+  color: var(--blu-scuro);
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 4px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--grigio-medio);
+}
+
+.crime-name-btn {
+  background: none;
+  border: none;
+  padding: 2px 0;
+  color: var(--blu);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.05rem;
+  transition: color var(--transizione), text-decoration-color var(--transizione);
+}
+.crime-name-btn:hover,
+.crime-name-btn:focus-visible {
+  color: var(--blu-scuro);
+  text-decoration-color: currentColor;
+}
+
+.crime-category-tag {
+  flex-shrink: 0;
+  margin-left: auto;
+  background: var(--grigio-chiaro);
+  color: var(--grigio-testo);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.crime-desc {
+  margin: 10px 0 0;
+  color: var(--grigio-testo);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.crime-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.crime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badge-multa {
+  background: #FCF3D8;
+  color: #8A6A00;
+}
+
+.badge-ore {
+  background: #E3ECFA;
+  color: var(--blu-header);
 }
 
 .processo-badge {
@@ -520,31 +651,10 @@ td.col-check {
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border-radius: 20px;
+  flex-shrink: 0;
 }
-
-.crime-name-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--blu);
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-  text-align: left;
-  font-size: 0.92rem;
-}
-.crime-name-btn:hover {
-  color: var(--blu-scuro);
-}
-
-.mono-value {
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-/* ============ MOBILE CARDS (generated via CSS on narrow widths using data attributes) ============ */
 
 /* ============ SELECTED PANEL ============ */
 
@@ -769,58 +879,15 @@ td.col-check {
     white-space: normal;
   }
 
-  /* Convert table to stacked cards on small screens */
-  #crimes-table thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
+  /* Card dei reati più compatte su mobile */
+  .crime-card {
+    padding: 14px;
   }
 
-  #crimes-table, #crimes-table tbody, #crimes-table tr, #crimes-table td {
-    display: block;
-    width: 100%;
-  }
-
-  #crimes-table {
-    min-width: 0;
-  }
-
-  #crimes-table tr {
-    border: 1px solid var(--grigio-medio);
-    border-radius: var(--radius-md);
-    margin: 10px;
-    padding: 10px 12px;
-    box-shadow: var(--ombra-leggera);
-  }
-
-  #crimes-table td {
-    padding: 8px 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px dashed var(--grigio-medio);
-    text-align: right;
-  }
-
-  #crimes-table td:last-child {
-    border-bottom: none;
-  }
-
-  #crimes-table td::before {
-    content: attr(data-label);
-    font-weight: 700;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--grigio-testo);
-    text-align: left;
-  }
-
-  #crimes-table td.col-check::before {
-    content: "";
+  .crime-category-tag {
+    margin-left: 0;
+    order: 3;
+    flex-basis: 100%;
   }
 
   .toolbar-row-actions {
@@ -834,6 +901,7 @@ td.col-check {
 
   .toolbar-actions .btn {
     flex: 1;
+    justify-content: center;
   }
 }
 
