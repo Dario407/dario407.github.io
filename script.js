@@ -57,10 +57,6 @@
     modalCarcere: document.getElementById("modal-carcere"),
     modalProcedura: document.getElementById("modal-procedura"),
     modalCategoria: document.getElementById("modal-categoria"),
-    // Modal conferma reset
-    confirmOverlay: document.getElementById("confirm-overlay"),
-    confirmCancelBtn: document.getElementById("confirm-cancel-btn"),
-    confirmOkBtn: document.getElementById("confirm-ok-btn"),
     // Toast
     toast: document.getElementById("toast"),
   };
@@ -546,19 +542,6 @@
   // RESET SELEZIONE
   // =========================================================
 
-  function requestReset() {
-    lastFocusedElement = document.activeElement;
-    els.confirmOverlay.hidden = false;
-    els.confirmCancelBtn.focus();
-  }
-
-  function closeConfirm() {
-    els.confirmOverlay.hidden = true;
-    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
-      lastFocusedElement.focus();
-    }
-  }
-
   function resetSelection() {
     selectedIds.clear();
     onlySelected = false;
@@ -568,7 +551,6 @@
     updateSummary();
     updateSelectedList();
     renderCrimes();
-    closeConfirm();
     showToast("Selezione reimpostata.");
   }
 
@@ -691,12 +673,7 @@
     els.copyBtn.addEventListener("click", copySelectedCrimes);
     els.copySelectedBtn.addEventListener("click", copySelectedCrimes);
 
-    els.resetBtn.addEventListener("click", requestReset);
-    els.confirmCancelBtn.addEventListener("click", closeConfirm);
-    els.confirmOkBtn.addEventListener("click", resetSelection);
-    els.confirmOverlay.addEventListener("click", function (e) {
-      if (e.target === els.confirmOverlay) closeConfirm();
-    });
+    els.resetBtn.addEventListener("click", resetSelection);
 
     els.clearStorageBtn.addEventListener("click", clearStoredSelection);
 
@@ -709,7 +686,6 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
         if (!els.modalOverlay.hidden) closeCrimeModal();
-        if (!els.confirmOverlay.hidden) closeConfirm();
       }
     });
   }
