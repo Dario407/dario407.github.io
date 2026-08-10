@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reati – Dipartimento di Giustizia di Los Santos</title>
+<meta name="description" content="Consultazione reati e calcolo automatico di fatture e pene detentive — Dipartimento di Giustizia di Los Santos (progetto non ufficiale FiveM RolePlay).">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenuto-principale">Vai al contenuto principale</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo" aria-hidden="true">
+        <img src="img/logo.png" alt="" id="logo-img">
+        <span class="logo-fallback" id="logo-fallback">DGLS</span>
+      </div>
+      <div class="header-text">
+        <p class="header-eyebrow">Ufficio Governativo &ndash; FiveM RolePlay</p>
+        <h1 class="header-title">Dipartimento di Giustizia di Los Santos</h1>
+        <p class="header-address">506 Cancerway, Emerals, California 91364</p>
+      </div>
+    </div>
+    <p class="header-disclaimer">Unofficial FiveM RolePlay Project</p>
+  </div>
+</header>
+
+<main id="contenuto-principale">
+
+  <!-- ============ RIEPILOGO ============ -->
+  <section class="summary-section" aria-label="Riepilogo del calcolo">
+    <div class="summary-grid">
+      <div class="summary-card" id="card-fattura-min">
+        <p class="summary-label">Fattura Minima</p>
+        <p class="summary-value" id="val-fattura-min">Nessun Valore</p>
+      </div>
+      <div class="summary-card" id="card-fattura-max">
+        <p class="summary-label">Fattura Massima</p>
+        <p class="summary-value" id="val-fattura-max">Nessun Valore</p>
+      </div>
+      <div class="summary-card" id="card-mesi-min">
+        <p class="summary-label">Mesi Minimi</p>
+        <p class="summary-value" id="val-mesi-min">Nessun Valore</p>
+      </div>
+      <div class="summary-card" id="card-mesi-max">
+        <p class="summary-label">Mesi Massimi</p>
+        <p class="summary-value" id="val-mesi-max">Nessun Valore</p>
+      </div>
+    </div>
+    <p class="pena-limite-note">Limite massimo di pena applicabile: 40 mesi complessivi.</p>
+  </section>
+
+  <div class="layout-grid">
+
+    <div class="layout-main">
+
+      <!-- ============ TOOLBAR ============ -->
+      <section class="toolbar" aria-label="Strumenti di ricerca e filtro">
+        <div class="toolbar-row">
+          <div class="search-field">
+            <label for="search-input" class="visually-hidden">Cerca reato</label>
+            <input type="search" id="search-input" placeholder="Cerca reato..." autocomplete="off">
+          </div>
+
+          <div class="filter-field">
+            <label for="categoria-select">Categoria</label>
+            <select id="categoria-select">
+              <option value="">Tutte</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="sort-select">Ordina per</label>
+            <select id="sort-select">
+              <option value="articolo">Articolo</option>
+              <option value="nome">Nome</option>
+              <option value="fatturaMin">Fattura minima</option>
+              <option value="fatturaMax">Fattura massima</option>
+              <option value="mesiMin">Mesi minimi</option>
+              <option value="mesiMax">Mesi massimi</option>
+            </select>
+          </div>
+
+          <button type="button" id="sort-dir-btn" class="btn btn-icon" aria-label="Inverti ordine" title="Inverti ordine crescente/decrescente">
+            <span id="sort-dir-icon">&uarr;</span>
+          </button>
+        </div>
+
+        <div class="toolbar-row toolbar-row-actions">
+          <label class="checkbox-field">
+            <input type="checkbox" id="only-selected-checkbox">
+            <span>Mostra solo selezionati</span>
+          </label>
+
+          <div class="toolbar-actions">
+            <button type="button" id="copy-btn" class="btn btn-primary">Copia negli appunti</button>
+            <button type="button" id="reset-btn" class="btn btn-secondary">Reset selezione</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STATISTICHE ============ -->
+      <section class="stats-bar" aria-live="polite">
+        <span>Reati disponibili: <strong id="stat-disponibili">0</strong></span>
+        <span>Reati selezionati: <strong id="stat-selezionati">0</strong></span>
+      </section>
+
+      <!-- ============ STATO CARICAMENTO / ERRORE ============ -->
+      <div id="loading-state" class="state-panel" role="status">
+        <p>Caricamento del database dei reati in corso...</p>
+      </div>
+
+      <div id="error-state" class="state-panel error-panel" hidden>
+        <p>Impossibile caricare il database dei reati.</p>
+        <button type="button" id="retry-btn" class="btn btn-primary">Riprova</button>
+      </div>
+
+      <div id="empty-state" class="state-panel" hidden>
+        <p>Nessun reato corrisponde ai criteri di ricerca.</p>
+      </div>
+
+      <!-- ============ TABELLA REATI ============ -->
+      <section class="table-section" aria-label="Elenco reati">
+        <div class="table-wrapper">
+          <table id="crimes-table" hidden>
+            <caption class="visually-hidden">Elenco dei reati consultabili e selezionabili</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-check">Seleziona</th>
+                <th scope="col" class="col-art">Art.</th>
+                <th scope="col" class="col-nome">Nome Reato</th>
+                <th scope="col" class="col-fattura">Fattura</th>
+                <th scope="col" class="col-mesi">Mesi di Carcere</th>
+                <th scope="col" class="col-proc">Procedura</th>
+              </tr>
+            </thead>
+            <tbody id="crimes-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============ PANNELLO SELEZIONATI ============ -->
+    <aside class="layout-aside" aria-label="Reati selezionati">
+      <section class="selected-panel">
+        <div class="selected-panel-header">
+          <h2>Reati selezionati</h2>
+          <button type="button" id="copy-selected-btn" class="btn btn-link">Copia reati</button>
+        </div>
+        <ul id="selected-list" class="selected-list">
+          <li class="selected-empty" id="selected-empty">Nessun reato selezionato.</li>
+        </ul>
+        <button type="button" id="clear-storage-btn" class="btn btn-ghost">Cancella selezione</button>
+      </section>
+    </aside>
+
+  </div>
+
+</main>
+
+<!-- ============ MODAL DETTAGLIO REATO ============ -->
+<div class="modal-overlay" id="modal-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="crime-modal">
+    <button type="button" class="modal-close" id="modal-close-btn" aria-label="Chiudi">&times;</button>
+    <dl class="modal-body">
+      <dt>Reato</dt>
+      <dd id="modal-nome">&mdash;</dd>
+
+      <dt>Articolo</dt>
+      <dd id="modal-articolo">&mdash;</dd>
+
+      <dt>Descrizione</dt>
+      <dd id="modal-descrizione">&mdash;</dd>
+
+      <dt>Fattura</dt>
+      <dd id="modal-fattura">&mdash;</dd>
+
+      <dt>Carcere</dt>
+      <dd id="modal-carcere">&mdash;</dd>
+
+      <dt>Procedura</dt>
+      <dd id="modal-procedura">&mdash;</dd>
+
+      <dt>Categoria</dt>
+      <dd id="modal-categoria">&mdash;</dd>
+    </dl>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" id="modal-close-btn-2">Chiudi</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONFERMA RESET ============ -->
+<div class="modal-overlay" id="confirm-overlay" hidden>
+  <div class="modal modal-small" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Confermi il reset della selezione?</h2>
+    <p>Tutti i reati selezionati verranno rimossi e i totali azzerati. L'azione non elimina il database dei reati.</p>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="confirm-cancel-btn">Annulla</button>
+      <button type="button" class="btn btn-primary" id="confirm-ok-btn">Conferma reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="script.js"></script>
+</body>
+</html>
