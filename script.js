@@ -9,6 +9,7 @@
   // ---------- Costanti ----------
   const DATA_URL = "data/reati.json";
   const STORAGE_KEY_SELECTION = "selectedCrimeIds";
+  const MESI_LIMITE = 40;
 
   // ---------- Stato applicativo ----------
   let allCrimes = [];          // database completo, invariato dopo il caricamento
@@ -282,7 +283,7 @@
     const tdMesi = document.createElement("td");
     tdMesi.dataset.label = "Mesi di Carcere";
     tdMesi.className = "mono-value";
-    tdMesi.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
+    tdMesi.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "mesi");
     tr.appendChild(tdMesi);
 
     // Colonna procedura
