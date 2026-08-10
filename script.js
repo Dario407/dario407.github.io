@@ -9,7 +9,7 @@
   // ---------- Costanti ----------
   const DATA_URL = "data/reati.json";
   const STORAGE_KEY_SELECTION = "selectedCrimeIds";
-  const MESI_LIMITE = 40;
+  const MESI_LIMITE = 40000;
 
   // ---------- Stato applicativo ----------
   let allCrimes = [];          // database completo, invariato dopo il caricamento
