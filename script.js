@@ -1,5 +1,5 @@
 /* =========================================================
-   Dipartimento di Giustizia di Los Santos — script.js
+   Atlantis rp consultazione reati — script.js
    Applicazione statica per la consultazione dei reati.
    ========================================================= */
 
