@@ -473,7 +473,7 @@
       .filter(Boolean)
       .sort(function (a, b) { return a.articolo.localeCompare(b.articolo, "it", { numeric: true }); });
 
-    const text = selectedCrimes.map(function (c) { return c.articolo + " CP"; }).join(", ");
+    const text = selectedCrimes.map(function (c) { return c.articolo; }).join(", ") + " CP";
 
     copyTextToClipboard(text)
       .then(function () {
