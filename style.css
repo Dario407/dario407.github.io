@@ -194,7 +194,7 @@ main {
 
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 14px;
 }
 
@@ -642,6 +642,11 @@ main {
 .badge-ore {
   background: #E3ECFA;
   color: var(--blu-header);
+}
+
+.badge-cauzione {
+  background: #E6F4EA;
+  color: #1E6B3A;
 }
 
 .processo-badge {

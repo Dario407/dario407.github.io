@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reati – Atlantis RP</title>
 <meta name="description" content="Il presente sito è destinato esclusivamente ad attività di Roleplay, ovvero a una simulazione della vita reale a scopo ricreativo.">
-<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,6 +41,10 @@
       <div class="summary-card" id="card-fattura-max">
         <p class="summary-label">Multa massima</p>
         <p class="summary-value" id="val-fattura-max">Nessun Valore</p>
+      </div>
+      <div class="summary-card" id="card-cauzione">
+        <p class="summary-label">Cauzione totale</p>
+        <p class="summary-value" id="val-cauzione">Nessun Valore</p>
       </div>
       <div class="summary-card" id="card-mesi-min">
         <p class="summary-label">Ore minime</p>
@@ -87,6 +90,7 @@
               <option value="nome">Nome</option>
               <option value="fatturaMin">Multa minima</option>
               <option value="fatturaMax">Multa massima</option>
+              <option value="cauzione">Cauzione</option>
               <option value="mesiMin">Ore minime</option>
               <option value="mesiMax">Ore massime</option>
             </select>
@@ -177,6 +181,9 @@
 
       <dt>Multa</dt>
       <dd id="modal-fattura">&mdash;</dd>
+
+      <dt>Cauzione</dt>
+      <dd id="modal-cauzione">&mdash;</dd>
 
       <dt>Carcere</dt>
       <dd id="modal-carcere">&mdash;</dd>

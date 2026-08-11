@@ -1,5 +1,5 @@
 /* =========================================================
-   Atlantis rp consultazione reati — script.js
+   Dipartimento di Giustizia di Los Santos — script.js
    Applicazione statica per la consultazione dei reati.
    ========================================================= */
 
@@ -9,7 +9,7 @@
   // ---------- Costanti ----------
   const DATA_URL = "data/reati.json";
   const STORAGE_KEY_SELECTION = "selectedCrimeIds";
-  const MESI_LIMITE = 40000;
+  const MESI_LIMITE = 40;
 
   // ---------- Stato applicativo ----------
   let allCrimes = [];          // database completo, invariato dopo il caricamento
@@ -41,6 +41,7 @@
     statSelezionati: document.getElementById("stat-selezionati"),
     valFatturaMin: document.getElementById("val-fattura-min"),
     valFatturaMax: document.getElementById("val-fattura-max"),
+    valCauzione: document.getElementById("val-cauzione"),
     valMesiMin: document.getElementById("val-mesi-min"),
     valMesiMax: document.getElementById("val-mesi-max"),
     selectedList: document.getElementById("selected-list"),
@@ -54,6 +55,7 @@
     modalArticolo: document.getElementById("modal-articolo"),
     modalDescrizione: document.getElementById("modal-descrizione"),
     modalFattura: document.getElementById("modal-fattura"),
+    modalCauzione: document.getElementById("modal-cauzione"),
     modalCarcere: document.getElementById("modal-carcere"),
     modalCategoria: document.getElementById("modal-categoria"),
     // Toast
@@ -102,6 +104,7 @@
       descrizione: safeString(raw.descrizione),
       fatturaMin: safeNumberOrNull(raw.fatturaMin),
       fatturaMax: safeNumberOrNull(raw.fatturaMax),
+      cauzione: safeNumberOrNull(raw.cauzione),
       mesiMin: safeNumberOrNull(raw.mesiMin),
       mesiMax: safeNumberOrNull(raw.mesiMax),
       tipo: raw.tipo === "processo" ? "processo" : "ordinario",
@@ -311,6 +314,14 @@
       badgesRow.appendChild(badgeMesi);
     }
 
+    if (crime.cauzione !== null) {
+      const badgeCauzione = document.createElement("span");
+      badgeCauzione.className = "crime-badge badge-cauzione";
+      badgeCauzione.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.4-5 3.2c0 3.8 10 1.8 10 5.9 0 1.9-2.2 3.4-5 3.4s-5-1.5-5-3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      badgeCauzione.appendChild(document.createTextNode("Cauzione: " + formatCurrency(crime.cauzione)));
+      badgesRow.appendChild(badgeCauzione);
+    }
+
     if (badgesRow.childElementCount > 0) {
       li.appendChild(badgesRow);
     }
@@ -329,11 +340,11 @@
     return formatter(min) + " – " + formatter(max) + suff;
   }
 
-  // Formato italiano con apostrofo come separatore delle migliaia: $10'000
+  // Formato italiano con punto come separatore delle migliaia: 10.000 €
   function formatCurrency(n) {
     const rounded = Math.round(n);
-    const withSeparators = rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
-    return "$" + withSeparators;
+    const withSeparators = rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return withSeparators + " €";
   }
 
   // =========================================================
@@ -356,9 +367,11 @@
   function calculateTotals() {
     let fatturaMinTot = 0;
     let fatturaMaxTot = 0;
+    let cauzioneTot = 0;
     let mesiMinTot = 0;
     let mesiMaxTot = 0;
     let hasFattura = false;
+    let hasCauzione = false;
     let hasMesi = false;
 
     // Ricalcola SEMPRE da zero, partendo dalla selezione effettiva.
@@ -370,6 +383,10 @@
         fatturaMinTot += crime.fatturaMin;
         fatturaMaxTot += crime.fatturaMax;
         hasFattura = true;
+      }
+      if (crime.cauzione !== null) {
+        cauzioneTot += crime.cauzione;
+        hasCauzione = true;
       }
       if (crime.mesiMin !== null && crime.mesiMax !== null) {
         mesiMinTot += crime.mesiMin;
@@ -386,6 +403,7 @@
     return {
       fatturaMin: hasFattura ? fatturaMinTot : null,
       fatturaMax: hasFattura ? fatturaMaxTot : null,
+      cauzione: hasCauzione ? cauzioneTot : null,
       mesiMin: hasMesi ? mesiMinTot : null,
       mesiMax: hasMesi ? mesiMaxTot : null,
     };
@@ -395,6 +413,7 @@
     const totals = calculateTotals();
     setSummaryValue(els.valFatturaMin, totals.fatturaMin, formatCurrency);
     setSummaryValue(els.valFatturaMax, totals.fatturaMax, formatCurrency);
+    setSummaryValue(els.valCauzione, totals.cauzione, formatCurrency);
     setSummaryValue(els.valMesiMin, totals.mesiMin, function (n) { return n + " ore"; });
     setSummaryValue(els.valMesiMax, totals.mesiMax, function (n) { return n + " ore"; });
   }
@@ -473,7 +492,7 @@
       .filter(Boolean)
       .sort(function (a, b) { return a.articolo.localeCompare(b.articolo, "it", { numeric: true }); });
 
-    const text = selectedCrimes.map(function (c) { return c.articolo; }).join(", ") + " CP";
+    const text = selectedCrimes.map(function (c) { return c.articolo; }).join(", ");
 
     copyTextToClipboard(text)
       .then(function () {
@@ -523,6 +542,7 @@
     els.modalArticolo.textContent = crime.articolo || "—";
     els.modalDescrizione.textContent = crime.descrizione || "—";
     els.modalFattura.textContent = formatRange(crime.fatturaMin, crime.fatturaMax, formatCurrency);
+    els.modalCauzione.textContent = crime.cauzione !== null ? formatCurrency(crime.cauzione) : "—";
     els.modalCarcere.textContent = formatRange(crime.mesiMin, crime.mesiMax, function (n) { return String(n); }, "ore");
     els.modalCategoria.textContent = crime.categoria || "—";
 
