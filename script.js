@@ -39,11 +39,9 @@
     clearStorageBtn: document.getElementById("clear-storage-btn"),
     statDisponibili: document.getElementById("stat-disponibili"),
     statSelezionati: document.getElementById("stat-selezionati"),
-    valFatturaMin: document.getElementById("val-fattura-min"),
-    valFatturaMax: document.getElementById("val-fattura-max"),
+    valFattura: document.getElementById("val-fattura"),
     valCauzione: document.getElementById("val-cauzione"),
-    valMesiMin: document.getElementById("val-mesi-min"),
-    valMesiMax: document.getElementById("val-mesi-max"),
+    valMesi: document.getElementById("val-mesi"),
     selectedList: document.getElementById("selected-list"),
     logoImg: document.getElementById("logo-img"),
     logoFallback: document.getElementById("logo-fallback"),
@@ -416,11 +414,19 @@
 
   function updateSummary() {
     const totals = calculateTotals();
-    setSummaryValue(els.valFatturaMin, totals.fatturaMin, formatCurrency);
-    setSummaryValue(els.valFatturaMax, totals.fatturaMax, formatCurrency);
+    setSummaryRange(els.valFattura, totals.fatturaMin, totals.fatturaMax, formatCurrency);
     setSummaryValue(els.valCauzione, totals.cauzione, formatCurrency);
-    setSummaryValue(els.valMesiMin, totals.mesiMin, function (n) { return n + " ore"; });
-    setSummaryValue(els.valMesiMax, totals.mesiMax, function (n) { return n + " ore"; });
+    setSummaryRange(els.valMesi, totals.mesiMin, totals.mesiMax, function (n) { return String(n); }, "ore");
+  }
+
+  function setSummaryRange(el, min, max, formatter, suffix) {
+    if (min === null && max === null) {
+      el.textContent = "Nessun Valore";
+      el.classList.remove("has-value");
+    } else {
+      el.textContent = formatRange(min, max, formatter, suffix);
+      el.classList.add("has-value");
+    }
   }
 
   function setSummaryValue(el, value, formatter) {
