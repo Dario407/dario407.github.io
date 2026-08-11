@@ -60,6 +60,7 @@
     modalCategoria: document.getElementById("modal-categoria"),
     // Toast
     toast: document.getElementById("toast"),
+    sideAlertContainer: document.getElementById("side-alert-container"),
   };
 
   let lastFocusedElement = null;
@@ -354,6 +355,10 @@
   function toggleCrime(id, isChecked) {
     if (isChecked) {
       selectedIds.add(id);
+      const crime = allCrimes.find(function (c) { return c.id === id; });
+      if (crime && crime.cauzione === 0) {
+        showSideAlert((crime.articolo || "Reato") + " cauzione non disponibile");
+      }
     } else {
       selectedIds.delete(id);
     }
@@ -661,6 +666,45 @@
         els.toast.hidden = true;
       }, 220);
     }, 2600);
+  }
+
+  // =========================================================
+  // AVVISI LATERALI (es. cauzione non disponibile)
+  // =========================================================
+
+  function showSideAlert(message) {
+    const alert = document.createElement("div");
+    alert.className = "side-alert";
+    alert.setAttribute("role", "alert");
+    alert.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86l-8.48 14.7A2 2 0 0 0 3.53 21h16.94a2 2 0 0 0 1.72-3.03L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    const span = document.createElement("span");
+    span.textContent = message;
+    alert.appendChild(span);
+
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "side-alert-close";
+    closeBtn.setAttribute("aria-label", "Chiudi avviso");
+    closeBtn.textContent = "\u00D7";
+    closeBtn.addEventListener("click", function () {
+      dismissSideAlert(alert);
+    });
+    alert.appendChild(closeBtn);
+
+    els.sideAlertContainer.appendChild(alert);
+
+    window.setTimeout(function () {
+      dismissSideAlert(alert);
+    }, 5000);
+  }
+
+  function dismissSideAlert(alert) {
+    if (!alert.parentNode) return;
+    alert.classList.add("side-alert-hide");
+    window.setTimeout(function () {
+      if (alert.parentNode) alert.parentNode.removeChild(alert);
+    }, 220);
   }
 
   // =========================================================

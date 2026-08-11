@@ -859,6 +859,67 @@ main {
   border-left-color: var(--rosso);
 }
 
+/* ============ AVVISI LATERALI ============ */
+
+.side-alert-container {
+  position: fixed;
+  top: 110px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 250;
+  max-width: 300px;
+}
+
+.side-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #FDECEC;
+  border: 1px solid #F3B7B7;
+  border-left: 4px solid var(--rosso);
+  border-radius: var(--radius-md);
+  padding: 12px 12px 12px 14px;
+  box-shadow: var(--ombra-media);
+  color: #7A1F1F;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  animation: side-alert-in 220ms ease;
+}
+
+.side-alert.side-alert-hide {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.side-alert .icon {
+  flex-shrink: 0;
+  color: var(--rosso);
+  margin-top: 1px;
+}
+
+.side-alert span {
+  flex: 1;
+}
+
+.side-alert-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 0 0 4px;
+}
+
+@keyframes side-alert-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 /* ============ RESPONSIVE ============ */
 
 @media (max-width: 960px) {
@@ -871,6 +932,14 @@ main {
 }
 
 @media (max-width: 640px) {
+  .side-alert-container {
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    top: auto;
+    bottom: 90px;
+  }
+
   .summary-grid {
     grid-template-columns: 1fr;
   }
