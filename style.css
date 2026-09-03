@@ -611,6 +611,7 @@ main {
 
 .crime-type-tag {
   flex-shrink: 0;
+  white-space: nowrap;
   border: 1px solid transparent;
   font-size: 0.72rem;
   font-weight: 800;
