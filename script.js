@@ -8,7 +8,7 @@
 
   // ---------- Costanti ----------
   const DATA_URL = "data/reati.json";
-  const STORAGE_KEY_SELECTION = "selectedCrimeIds";
+  const STORAGE_KEY_SELECTION = "selectedCrimeIds-v2";
 
   // ---------- Stato applicativo ----------
   let allCrimes = [];          // database completo, invariato dopo il caricamento
