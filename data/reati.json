@@ -1825,7 +1825,7 @@
     "mesiMax": 6,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1840,7 +1840,7 @@
     "mesiMax": 24,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1855,7 +1855,7 @@
     "mesiMax": 8,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": 1000,
     "tipologia": "Flagranza di reato"
   },
@@ -1870,7 +1870,7 @@
     "mesiMax": 6,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1885,7 +1885,7 @@
     "mesiMax": 4,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1900,7 +1900,7 @@
     "mesiMax": 5,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1915,7 +1915,7 @@
     "mesiMax": 24,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1930,7 +1930,7 @@
     "mesiMax": 16,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1945,7 +1945,7 @@
     "mesiMax": 10,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1960,7 +1960,7 @@
     "mesiMax": 14,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1975,7 +1975,7 @@
     "mesiMax": 0,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -1990,7 +1990,7 @@
     "mesiMax": 24,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": 3000,
     "tipologia": "Flagranza di reato"
   },
@@ -2005,7 +2005,7 @@
     "mesiMax": 10,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -2020,7 +2020,7 @@
     "mesiMax": 48,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": 2000,
     "tipologia": "Flagranza di reato"
   },
@@ -2035,7 +2035,7 @@
     "mesiMax": 72,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": 2000,
     "tipologia": "Flagranza di reato"
   },
@@ -2050,7 +2050,7 @@
     "mesiMax": 48,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -2065,7 +2065,7 @@
     "mesiMax": 72,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": 1000,
     "tipologia": "Flagranza di reato"
   },
@@ -2080,7 +2080,7 @@
     "mesiMax": 48,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -2095,7 +2095,7 @@
     "mesiMax": 24,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -2110,7 +2110,7 @@
     "mesiMax": 48,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": 1000,
     "tipologia": "Flagranza di reato"
   },
@@ -2125,7 +2125,7 @@
     "mesiMax": 12,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   },
@@ -2140,7 +2140,7 @@
     "mesiMax": 5,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Contravvenzioni",
+    "categoria": "Ordine pubblico e sicurezza dell'individuo",
     "cauzione": null,
     "tipologia": "Flagranza di reato"
   }
