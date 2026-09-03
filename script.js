@@ -283,7 +283,9 @@
     if (crime.tipologia) {
       const tipoTag = document.createElement("span");
       tipoTag.className = "crime-type-tag " + (crime.tipologia === "Flagranza di reato" ? "crime-type-flagranza" : "crime-type-convalida");
-      tipoTag.textContent = crime.tipologia;
+      tipoTag.textContent = crime.tipologia === "Flagranza di reato" ? "Flagranza" : "Convalida";
+      tipoTag.title = crime.tipologia;
+      tipoTag.setAttribute("aria-label", "Tipologia: " + crime.tipologia);
       top.appendChild(tipoTag);
     }
 
