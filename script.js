@@ -9,7 +9,6 @@
   // ---------- Costanti ----------
   const DATA_URL = "data/reati.json";
   const STORAGE_KEY_SELECTION = "selectedCrimeIds";
-  const MESI_LIMITE = 40;
 
   // ---------- Stato applicativo ----------
   let allCrimes = [];          // database completo, invariato dopo il caricamento
@@ -410,11 +409,6 @@
         hasMesi = true;
       }
     });
-
-    if (hasMesi) {
-      mesiMinTot = Math.min(mesiMinTot, MESI_LIMITE);
-      mesiMaxTot = Math.min(mesiMaxTot, MESI_LIMITE);
-    }
 
     if (hasConvalida) {
       return {
