@@ -106,8 +106,9 @@
       cauzione: safeNumberOrNull(raw.cauzione),
       mesiMin: safeNumberOrNull(raw.mesiMin),
       mesiMax: safeNumberOrNull(raw.mesiMax),
-      tipo: raw.tipo === "tipologia" ? "tipologia" : "reato",
-      selezionabile: raw.selezionabile !== false && raw.tipo !== "tipologia",
+      tipo: "reato",
+      tipologia: safeString(raw.tipologia),
+      selezionabile: raw.selezionabile !== false,
       categoria: safeString(raw.categoria) || "Altro",
     };
   }
@@ -167,6 +168,7 @@
         crime.nome,
         crime.id,
         crime.categoria,
+        crime.tipologia,
         crime.descrizione,
       ].join(" ").toLowerCase();
 
@@ -226,9 +228,7 @@
     li.className = "crime-card";
     li.dataset.id = crime.id;
 
-    if (crime.tipo === "tipologia") {
-      li.classList.add("is-processo");
-    } else if (selectedIds.has(crime.id)) {
+    if (selectedIds.has(crime.id)) {
       li.classList.add("is-selected");
     }
 
@@ -279,6 +279,13 @@
       catTag.className = "crime-category-tag";
       catTag.textContent = crime.categoria;
       top.appendChild(catTag);
+    }
+
+    if (crime.tipologia) {
+      const tipoTag = document.createElement("span");
+      tipoTag.className = "crime-category-tag";
+      tipoTag.textContent = crime.tipologia;
+      top.appendChild(tipoTag);
     }
 
     li.appendChild(top);
