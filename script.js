@@ -384,10 +384,16 @@
     let hasCauzione = false;
     let hasMesi = false;
 
+    let hasConvalida = false;
+
     // Ricalcola SEMPRE da zero, partendo dalla selezione effettiva.
     selectedIds.forEach(function (id) {
       const crime = allCrimes.find(function (c) { return c.id === id; });
       if (!crime || !crime.selezionabile) return;
+
+      if (crime.tipologia === "Convalida") {
+        hasConvalida = true;
+      }
 
       if (crime.fatturaMin !== null && crime.fatturaMax !== null) {
         fatturaMinTot += crime.fatturaMin;
@@ -410,12 +416,24 @@
       mesiMaxTot = Math.min(mesiMaxTot, MESI_LIMITE);
     }
 
+    if (hasConvalida) {
+      return {
+        fatturaMin: 0,
+        fatturaMax: 0,
+        cauzione: 0,
+        mesiMin: 48,
+        mesiMax: 48,
+        statoFermo: true,
+      };
+    }
+
     return {
       fatturaMin: hasFattura ? fatturaMinTot : null,
       fatturaMax: hasFattura ? fatturaMaxTot : null,
       cauzione: hasCauzione ? cauzioneTot : null,
       mesiMin: hasMesi ? mesiMinTot : null,
       mesiMax: hasMesi ? mesiMaxTot : null,
+      statoFermo: false,
     };
   }
 
@@ -423,7 +441,13 @@
     const totals = calculateTotals();
     setSummaryRange(els.valFattura, totals.fatturaMin, totals.fatturaMax, formatCurrency);
     setSummaryValue(els.valCauzione, totals.cauzione, formatCurrency);
-    setSummaryRange(els.valMesi, totals.mesiMin, totals.mesiMax, function (n) { return String(n); }, "ore");
+
+    if (totals.statoFermo) {
+      els.valMesi.textContent = "48 ore stato di fermo";
+      els.valMesi.classList.add("has-value");
+    } else {
+      setSummaryRange(els.valMesi, totals.mesiMin, totals.mesiMax, function (n) { return String(n); }, "ore");
+    }
   }
 
   function setSummaryRange(el, min, max, formatter, suffix) {
