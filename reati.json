@@ -10,7 +10,8 @@
     "mesiMax": 10,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Patrimonio"
+    "categoria": "Patrimonio",
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "102",
@@ -23,7 +24,8 @@
     "mesiMax": 14,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Patrimonio"
+    "categoria": "Patrimonio",
+    "tipologia": "Convalida"
   },
   {
     "id": "204",
@@ -36,7 +38,8 @@
     "mesiMax": 18,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Patrimonio"
+    "categoria": "Patrimonio",
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "301",
@@ -49,7 +52,8 @@
     "mesiMax": 12,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Persona"
+    "categoria": "Persona",
+    "tipologia": "Convalida"
   },
   {
     "id": "315",
@@ -62,7 +66,8 @@
     "mesiMax": 40,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Persona"
+    "categoria": "Persona",
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "410",
@@ -75,7 +80,8 @@
     "mesiMax": 11,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Armi"
+    "categoria": "Armi",
+    "tipologia": "Convalida"
   },
   {
     "id": "411",
@@ -88,7 +94,8 @@
     "mesiMax": 15,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Armi"
+    "categoria": "Armi",
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "520",
@@ -101,7 +108,8 @@
     "mesiMax": 7,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Droga"
+    "categoria": "Droga",
+    "tipologia": "Convalida"
   },
   {
     "id": "521",
@@ -114,7 +122,8 @@
     "mesiMax": 20,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Droga"
+    "categoria": "Droga",
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "630",
@@ -127,7 +136,8 @@
     "mesiMax": 5,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Traffico"
+    "categoria": "Traffico",
+    "tipologia": "Convalida"
   },
   {
     "id": "631",
@@ -140,7 +150,8 @@
     "mesiMax": 9,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Traffico"
+    "categoria": "Traffico",
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "701",
@@ -153,7 +164,8 @@
     "mesiMax": 10,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Ordine pubblico"
+    "categoria": "Ordine pubblico",
+    "tipologia": "Convalida"
   },
   {
     "id": "702",
@@ -166,32 +178,7 @@
     "mesiMax": 2,
     "tipo": "reato",
     "selezionabile": true,
-    "categoria": "Ordine pubblico"
-  },
-  {
-    "id": "T01",
-    "articolo": "Art. T01",
-    "nome": "Flagranza di reato",
-    "descrizione": "Reato accertato nel momento in cui viene commesso o immediatamente dopo.",
-    "fatturaMin": null,
-    "fatturaMax": null,
-    "mesiMin": null,
-    "mesiMax": null,
-    "tipo": "tipologia",
-    "selezionabile": false,
-    "categoria": "Tipologia"
-  },
-  {
-    "id": "T02",
-    "articolo": "Art. T02",
-    "nome": "Convalida",
-    "descrizione": "Convalida dell'arresto o del fermo da parte dell'autorità competente.",
-    "fatturaMin": null,
-    "fatturaMax": null,
-    "mesiMin": null,
-    "mesiMax": null,
-    "tipo": "tipologia",
-    "selezionabile": false,
-    "categoria": "Tipologia"
+    "categoria": "Ordine pubblico",
+    "tipologia": "Flagranza di reato"
   }
 ]
