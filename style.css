@@ -609,6 +609,29 @@ main {
   border-radius: 20px;
 }
 
+.crime-type-tag {
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 5px 11px;
+  border-radius: 20px;
+}
+
+.crime-type-flagranza {
+  background: #DDF3FF;
+  border-color: #9BD8F5;
+  color: #075985;
+}
+
+.crime-type-convalida {
+  background: #FDE2E2;
+  border-color: #F5AAAA;
+  color: #991B1B;
+}
+
 .crime-desc {
   margin: 10px 0 0;
   color: var(--grigio-testo);
