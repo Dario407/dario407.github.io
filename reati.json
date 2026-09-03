@@ -8,8 +8,7 @@
     "fatturaMax": 10000,
     "mesiMin": 5,
     "mesiMax": 10,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Patrimonio"
   },
@@ -22,8 +21,7 @@
     "fatturaMax": 15000,
     "mesiMin": 8,
     "mesiMax": 14,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Patrimonio"
   },
@@ -36,8 +34,7 @@
     "fatturaMax": 22000,
     "mesiMin": 10,
     "mesiMax": 18,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Patrimonio"
   },
@@ -50,8 +47,7 @@
     "fatturaMax": 12000,
     "mesiMin": 6,
     "mesiMax": 12,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Persona"
   },
@@ -64,8 +60,7 @@
     "fatturaMax": 50000,
     "mesiMin": 20,
     "mesiMax": 40,
-    "procedura": "Procedura speciale",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Persona"
   },
@@ -78,8 +73,7 @@
     "fatturaMax": 13000,
     "mesiMin": 6,
     "mesiMax": 11,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Armi"
   },
@@ -92,8 +86,7 @@
     "fatturaMax": 16000,
     "mesiMin": 8,
     "mesiMax": 15,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Armi"
   },
@@ -106,8 +99,7 @@
     "fatturaMax": 7000,
     "mesiMin": 3,
     "mesiMax": 7,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Droga"
   },
@@ -120,8 +112,7 @@
     "fatturaMax": 20000,
     "mesiMin": 10,
     "mesiMax": 20,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Droga"
   },
@@ -134,8 +125,7 @@
     "fatturaMax": 5000,
     "mesiMin": 2,
     "mesiMax": 5,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Traffico"
   },
@@ -148,8 +138,7 @@
     "fatturaMax": 9000,
     "mesiMin": 4,
     "mesiMax": 9,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Traffico"
   },
@@ -162,8 +151,7 @@
     "fatturaMax": 11000,
     "mesiMin": 5,
     "mesiMax": 10,
-    "procedura": "Procedura ordinaria",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Ordine pubblico"
   },
@@ -176,37 +164,34 @@
     "fatturaMax": 1500,
     "mesiMin": 1,
     "mesiMax": 2,
-    "procedura": "Procedura semplificata",
-    "tipo": "ordinario",
+    "tipo": "reato",
     "selezionabile": true,
     "categoria": "Ordine pubblico"
   },
   {
-    "id": "P01",
-    "articolo": "Art. P01",
-    "nome": "Processo per direttissima",
-    "descrizione": "Procedimento giudiziario accelerato riservato ai casi di flagranza di reato, celebrato dinanzi al giudice entro breve termine.",
+    "id": "T01",
+    "articolo": "Art. T01",
+    "nome": "Flagranza di reato",
+    "descrizione": "Reato accertato nel momento in cui viene commesso o immediatamente dopo.",
     "fatturaMin": null,
     "fatturaMax": null,
     "mesiMin": null,
     "mesiMax": null,
-    "procedura": "Processo per direttissima",
-    "tipo": "processo",
+    "tipo": "tipologia",
     "selezionabile": false,
-    "categoria": "Processo"
+    "categoria": "Tipologia"
   },
   {
-    "id": "P02",
-    "articolo": "Art. P02",
-    "nome": "Processo ordinario",
-    "descrizione": "Procedimento giudiziario standard che prevede udienza preliminare, dibattimento e sentenza.",
+    "id": "T02",
+    "articolo": "Art. T02",
+    "nome": "Convalida",
+    "descrizione": "Convalida dell'arresto o del fermo da parte dell'autorità competente.",
     "fatturaMin": null,
     "fatturaMax": null,
     "mesiMin": null,
     "mesiMax": null,
-    "procedura": "Processo ordinario",
-    "tipo": "processo",
+    "tipo": "tipologia",
     "selezionabile": false,
-    "categoria": "Processo"
+    "categoria": "Tipologia"
   }
 ]
