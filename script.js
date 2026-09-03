@@ -283,7 +283,7 @@
 
     if (crime.tipologia) {
       const tipoTag = document.createElement("span");
-      tipoTag.className = "crime-category-tag";
+      tipoTag.className = "crime-type-tag " + (crime.tipologia === "Flagranza di reato" ? "crime-type-flagranza" : "crime-type-convalida");
       tipoTag.textContent = crime.tipologia;
       top.appendChild(tipoTag);
     }
