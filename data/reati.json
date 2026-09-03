@@ -11,7 +11,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Patrimonio",
-    "cauzione": 7500
+    "cauzione": 7500,
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "102",
@@ -25,7 +26,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Patrimonio",
-    "cauzione": 11500
+    "cauzione": 11500,
+    "tipologia": "Convalida"
   },
   {
     "id": "204",
@@ -39,7 +41,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Patrimonio",
-    "cauzione": 17000
+    "cauzione": 17000,
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "301",
@@ -53,7 +56,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Persona",
-    "cauzione": 9000
+    "cauzione": 9000,
+    "tipologia": "Convalida"
   },
   {
     "id": "315",
@@ -67,7 +71,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Persona",
-    "cauzione": 37500
+    "cauzione": 37500,
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "410",
@@ -81,7 +86,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Armi",
-    "cauzione": 10000
+    "cauzione": 10000,
+    "tipologia": "Convalida"
   },
   {
     "id": "411",
@@ -95,7 +101,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Armi",
-    "cauzione": 12500
+    "cauzione": 12500,
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "520",
@@ -109,7 +116,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Droga",
-    "cauzione": 5000
+    "cauzione": 5000,
+    "tipologia": "Convalida"
   },
   {
     "id": "521",
@@ -123,7 +131,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Droga",
-    "cauzione": 15000
+    "cauzione": 15000,
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "630",
@@ -137,7 +146,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Traffico",
-    "cauzione": 3500
+    "cauzione": 3500,
+    "tipologia": "Convalida"
   },
   {
     "id": "631",
@@ -151,7 +161,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Traffico",
-    "cauzione": 6500
+    "cauzione": 6500,
+    "tipologia": "Flagranza di reato"
   },
   {
     "id": "701",
@@ -165,7 +176,8 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Ordine pubblico",
-    "cauzione": 8000
+    "cauzione": 8000,
+    "tipologia": "Convalida"
   },
   {
     "id": "702",
@@ -179,34 +191,7 @@
     "tipo": "reato",
     "selezionabile": true,
     "categoria": "Ordine pubblico",
-    "cauzione": 1000
-  },
-  {
-    "id": "T01",
-    "articolo": "Art. T01",
-    "nome": "Flagranza di reato",
-    "descrizione": "Reato accertato nel momento in cui viene commesso o immediatamente dopo.",
-    "fatturaMin": null,
-    "fatturaMax": null,
-    "mesiMin": null,
-    "mesiMax": null,
-    "tipo": "tipologia",
-    "selezionabile": false,
-    "categoria": "Tipologia",
-    "cauzione": null
-  },
-  {
-    "id": "T02",
-    "articolo": "Art. T02",
-    "nome": "Convalida",
-    "descrizione": "Convalida dell'arresto o del fermo da parte dell'autorità competente.",
-    "fatturaMin": null,
-    "fatturaMax": null,
-    "mesiMin": null,
-    "mesiMax": null,
-    "tipo": "tipologia",
-    "selezionabile": false,
-    "categoria": "Tipologia",
-    "cauzione": null
+    "cauzione": 1000,
+    "tipologia": "Flagranza di reato"
   }
 ]
